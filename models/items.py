@@ -12,6 +12,10 @@ class Items(Base):
    price = Column(Float)
    description = Column(String)
 
+print(Items.__table__)
+
+# Base.metadata.create_all(engine)
+
 Session = sessionmaker(bind = engine)
 session = Session()
 result = session.query(Items).all()
