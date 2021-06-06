@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine, Table, Integer, String, Column, Float
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
     
@@ -10,3 +11,10 @@ class Items(Base):
    name = Column(String)
    price = Column(Float)
    description = Column(String)
+
+Session = sessionmaker(bind = engine)
+session = Session()
+result = session.query(Items).all()
+
+for row in result:
+   print ("Name: ",row.name, "Price:",row.price, "Description:",row.description)
